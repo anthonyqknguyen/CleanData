@@ -3,7 +3,7 @@
 setwd(getwd())
 
 # Setting the data directory
-Data_wd <- "../Data/"
+Data_wd <- "./Data/"
 
 # Reading in the counts table
 counts <- read.table(paste(Data_wd, "counts.txt", sep=""), sep="\t")
