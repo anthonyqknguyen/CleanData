@@ -8,7 +8,7 @@ Data_wd <- "../Data/"
 counts <- read.table(paste(Data_wd, "counts.txt", sep=""), sep="\t")
 
 # Reading in the metadata
-metadata <- read.table(paste(Data_wd, "metadata.txt", sep=""), sep="\t")
+metadata <- read.table(paste(Data_wd, "metadata.txt", sep=""), sep="\t", fill = TRUE)
 
 # Reading in the taxa data
 taxa <- read.table(paste(Data_wd, "taxa.txt", sep=""), sep="\t")
