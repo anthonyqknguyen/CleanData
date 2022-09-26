@@ -1,4 +1,5 @@
 # Setting woking directory
+# assumes starting location in terminal is /CleanData
 setwd(getwd())
 
 # Setting the data directory
