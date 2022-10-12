@@ -1,27 +1,35 @@
 ---
 title: "Virginia Tech Beamer Presentation"
-author: "Preston Childress"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
+author: Preston Childress
+subtitle: "Some other text"
+date: "`r format(Sys.time(), '%B %d, %Y')`" # This automatically sets date to today
+institution: "Virginia Tech"
+
+
 output:
   beamer_presentation:
-    incremental: no
-    toc: no
+    incremental: no #Don't make new slides for each bullet point
+    toc: no #No table of contents slide
     theme: Hokie
-    latex_engine: pdflatex
-    slide_level: 2
-  ioslides_presentation:
-    incremental: no
-  slidy_presentation:
-    incremental: no
-institution: Virginia Tech
-subtitle: Some other text
-classoption: aspectratio=169
-urlcolor: blue
-linkcolor: white
-header-includes: \AtBeginSection{}
-bibliography: citations.bib
-biblio-style: apa.csl
-nocite: '@rmdGuide, @ggplotBg, @rTheme, @rCodeFont, @rCrime'
+    latex_engine: pdflatex 
+    slide_level: 2 # This makes double hashes slides, single hashes section titles
+
+        
+classoption: aspectratio=169 #Force widescreen
+urlcolor: blue # urlcolor makes external hyperlinks blue as people expect
+linkcolor: white # Ensure that the navigation dots are white for contrast
+header-includes: \AtBeginSection{} # Turn off section header slides.
+
+
+bibliography: "citations.bib" # This is the name of your citations file. An easy way to
+                              # build a citations file is Zotero: https://zbib.org/
+                              
+biblio-style: "apa.csl" # This is the APA citation style file, there are a LOT available:
+                        # https://github.com/citation-style-language/styles
+                        
+# nocite lets you include references from the .bib file without explicitly referring 
+# to them in the presentation body. References here MUST match whats in the .bib file.
+nocite: "@rmdGuide, @ggplotBg, @rTheme, @rCodeFont, @rCrime"
 ---
 
 ```{r setup, include=FALSE}
