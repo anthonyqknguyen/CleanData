@@ -1,7 +1,7 @@
 ---
 title: "Impact of Biological Factos on Product Effectiveness"
 author: Clean Data
-subtitle: "CMDA 4864 Capstone"
+subtitle: "Colgate-Palmolive"
 date: "`r format(Sys.time(), '%B %d, %Y')`" # This automatically sets date to today
 institution: "Virginia Tech"
 
@@ -59,75 +59,37 @@ theme_update(plot.background = element_rect(fill = "transparent",colour = NA))
 
 # Intro
 
-## General Stuff
+## Intro Title
 
-- You can make lists
+testing
 
-  - Sub-items are indented
-  
-    - So are sub-sub-items
-    
-- And you can do in-line LaTeX: $e^{i\pi} + 1 = 0$
+# Problem
 
-- Or in-line R syntax: `mean(mtcars$mpg)`
+## Problem Statement
 
-- LaTeX blocks are also supported:
 
-$$ \overset{n}{\underset{i=1}{\sum}} \phi_i \frac{\mathbf{u}_i^\intercal \mathbf{b}}{\sigma_i} \mathbf{v}_i $$
 
-# Code Section
+# Literature
 
-## Code Example
+## Literature
 
-- Code outputs with normal font size can use up vertical space quickly
+# Components
 
-```{r}
-# This output is normalsize and takes up space
-head(mtcars)
-```
+## Components
 
-## Smaller Code
+# Solutions
 
-- The `size` parameter can be used to change code and output size
+## Solutions
 
-- It accepts standard LaTeX sizes: 
+## Deliverables
 
-  - Huge > huge > LARGE > Large > large > normalsize > small > footnotesize > scriptsize > tiny
+## Future Plans
 
-\footnotesize
-```{r, size="footnotesize"}
-# This output is footnotesize and takes up less space
-head(mtcars)
-```
+# Results
 
-## Plot Example
+## Preliminary Results
 
-- Use `fig.width / fig.height` to scale plots
-
-```{r fig.width = 6, fig.height = 2.25, size="footnotesize"}
-# Code with {r fig.width = 6, fig.height = 2.25}
-qplot(x = mtcars$wt, y = mtcars$mpg)
-```
-
-## Handling Overflow {.allowframebreaks}
-
-- Sometimes code output will be too long for a single slide
-
-- Adding `{.allowframebreaks}` to the title of a slide lets it overflow onto a second slide
-
-- For this slide the header is `## Handling Overflow {.allowframebreaks}`
-
-```{r size="footnotesize"}
-# Intentionally long output
-head(mtcars, 18)
-```
-
-- Output is continued to the second slide automatically
-
-- The slide title automatically incremented
-
-- The navigation dot does not advance
-
+## Conclusion
 
 
 
