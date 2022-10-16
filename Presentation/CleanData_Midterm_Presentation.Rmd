@@ -72,7 +72,48 @@ testing
 # Literature
 
 ## Literature
+\setbeamerfont{caption}{size=\scriptsize}
+\begin{columns}
+\begin{column}{0.35\textwidth}
+\begin{figure}
+  \includegraphics[width=\textwidth]{./paper1.pdf}
+  \caption{Ching, Travers, et al. “Power Analysis and Sample Size Estimation for RNA-Seq Differential
+Expression.” RNA, vol. 20, no. 11, 2014, pp. 1684–1696., https://doi.org/10.1261/rna.046011.114.}
+\end{figure}
+\end{column}
+\begin{column}{0.65\textwidth}
+this is one of our sources
+\end{column}
+\end{columns}
 
+
+## Literature 2
+\setbeamerfont{caption}{size=\scriptsize}
+\begin{columns}
+\begin{column}{0.35\textwidth}
+\begin{figure}
+  \includegraphics[width=\textwidth]{./paper2.pdf}
+  \caption{Tarazona, Sonia, et al. “Data Quality Aware Analysis of Differential Expression in RNA-Seq with Noiseq R/Bioc Package.” Nucleic Acids Research, 2015, https://doi.org/10.1093/nar/gkv711. }
+\end{figure}
+\end{column}
+\begin{column}{0.65\textwidth}
+this is one of our sources
+\end{column}
+\end{columns}
+
+## Literature 3
+\setbeamerfont{caption}{size=\scriptsize}
+\begin{columns}
+\begin{column}{0.35\textwidth}
+\begin{figure}
+  \includegraphics[width=0.65\textwidth]{./paper3.pdf}
+  \caption{Tarazona, Sonia, et al. “Data Quality Aware Analysis of Differential Expression in RNA-Seq with Noiseq R/Bioc Package.” Nucleic Acids Research, 2015, https://doi.org/10.1093/nar/gkv711. }
+\end{figure}
+\end{column}
+\begin{column}{0.65\textwidth}
+this is one of our sources
+\end{column}
+\end{columns}
 # Components
 
 ## Components
