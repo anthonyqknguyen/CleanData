@@ -25,7 +25,23 @@ treatmentParams <- data.frame("gene" = rownames(ko_noz_filt), "disp" = treatment
 
 theta = (exp(baselineParams$logCPM) + exp(baselineParams$logCPM)^2) / baselineParams$disp
 
-max(rnegbin(exp(baselineParams$logCPM), theta = baselineParams$disp))
+simData = rnegbin(exp(baselineParams$logCPM), theta = baselineParams$disp)
 
 max(rnegbin(exp(baselineParams$logCPM), theta = theta))
+
+boxplot(baselineDisp$trended.dispersion, treatmentDisp$trended.dispersion, 
+        ylab="Distribution of Fitted Dispersion", xlab="Study (Before/After Treatment)", main="Fitted Dispersion Values Before and After Treatment", col=c("firebrick4", "dodgerblue4"))
+legend("topright", legend = c("Before Treatment", "After Treatment"), fill = c("firebrick4", "dodgerblue4"))
+
+boxplot(baselineDisp$AveLogCPM, treatmentDisp$AveLogCPM, 
+        ylab="Distribution of Average Log CPM (counts per million)", xlab="Study (Before/After Treatment)", main="Fitted Average Log CPM Values Before and After Treatment", col=c("firebrick4", "dodgerblue4"))
+legend("topright", legend = c("Before Treatment", "After Treatment"), fill = c("firebrick4", "dodgerblue4"))
+
+plot(sort(log(simData)))
+
+plot(sort(simData), ylim = c(0,100000))
+
+
+
+
 
