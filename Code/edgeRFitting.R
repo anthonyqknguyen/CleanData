@@ -2,6 +2,11 @@ library(edgeR)
 library(dplyr)
 library(MASS)
 
+setwd(getwd())
+
+# Setting the data directory
+Data_wd <- "../Data/"
+
 ko_noz <- read.table(paste(Data_wd, "ko_noz_rn_tmm.txt", sep=""), sep="\t", header=TRUE)[,-c(13)]
 
 ko_noz_filt <- ko_noz[rowSums(ko_noz) > 12,]
@@ -29,18 +34,26 @@ simData = rnegbin(exp(baselineParams$logCPM), theta = baselineParams$disp)
 
 max(rnegbin(exp(baselineParams$logCPM), theta = theta))
 
+svg("./Plots/box_plot_1.svg")
 boxplot(baselineDisp$trended.dispersion, treatmentDisp$trended.dispersion, 
         ylab="Distribution of Fitted Dispersion", xlab="Study (Before/After Treatment)", main="Fitted Dispersion Values Before and After Treatment", col=c("firebrick4", "dodgerblue4"))
 legend("topright", legend = c("Before Treatment", "After Treatment"), fill = c("firebrick4", "dodgerblue4"))
+dev.off()
 
+
+svg("./Plots/box_plot_2.svg")
 boxplot(baselineDisp$AveLogCPM, treatmentDisp$AveLogCPM, 
         ylab="Distribution of Average Log CPM (counts per million)", xlab="Study (Before/After Treatment)", main="Fitted Average Log CPM Values Before and After Treatment", col=c("firebrick4", "dodgerblue4"))
 legend("topright", legend = c("Before Treatment", "After Treatment"), fill = c("firebrick4", "dodgerblue4"))
+dev.off()
 
+svg("./Plots/log_negbin_plot.svg")
 plot(sort(log(simData)))
+dev.off()
 
+svg("./Plots/negbin_plot.svg")
 plot(sort(simData), ylim = c(0,100000))
-
+dev.off()
 
 
 
