@@ -45,6 +45,6 @@ ko_num <- select(ko_noz, -ko)
 ko_num_before <- ko_num[,1:6]
 ko_num_after <- ko_num[,7:12]
 
-make_hist(counts_num, "Citizens Data", TRUE, "Citizens_hist.svg")
-make_hist(ko_num_before, "SnF2 Before Treatment Data", TRUE, "snf2_before_hist.svg")
-make_hist(ko_num_after, "SnF2 After Treatment Data", TRUE, "snf2_after_hist.svg")
+make_hist(counts_num, "Citizens Data")
+make_hist(ko_num_before, "SnF2 Before Treatment Data")
+make_hist(ko_num_after, "SnF2 After Treatment Data")
