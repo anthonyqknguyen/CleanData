@@ -33,7 +33,7 @@ make_hist <- function(data, title= "untitled", save= FALSE, file_name= "untitled
     svg(file_name)
   }
   plot(hist.data,
-       xlab="Counts", ylab="Frequency (log10)", main=title, 
+       xlab="Counts of Bacteria", ylab="Frequency (log10)", main=title, 
        col="lightblue")
   if (save) {
     dev.off()
@@ -41,10 +41,12 @@ make_hist <- function(data, title= "untitled", save= FALSE, file_name= "untitled
 }
 
 counts_num <- select(counts, -V1)
-ko_num <- select(ko_noz, -ko)
+
+counts_num <- subset(counts, select=-V1)
+ko_num <- subset(ko_noz, select = -ko)
 ko_num_before <- ko_num[,1:6]
 ko_num_after <- ko_num[,7:12]
 
-make_hist(counts_num, "Citizens Data")
-make_hist(ko_num_before, "SnF2 Before Treatment Data")
-make_hist(ko_num_after, "SnF2 After Treatment Data")
+make_hist(counts_num, "Citizens Data", save = T, "Citizens_hist.svg")
+make_hist(ko_num_before, "SnF2 Before Treatment Data", save=T, "snf2_before_hist.svg")
+make_hist(ko_num_after, "SnF2 After Treatment Data", save=T, "snf2_after_hist.svg")
