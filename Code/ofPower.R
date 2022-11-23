@@ -77,27 +77,29 @@ estimateOFParams = function(counts, treatment) {
 
 simulateOF = function(params, n) {
   
-  fcCopy = params$fc
+  fc = params$fc
   
   de = params$de
   
+  disps = params$dispsCR
+  
   libsize = params$sample_data$libsize
   
-  # mean_expr <- (fcCopy[, 1] + fcCopy[, 2]) / 2
+  # mean_expr <- (fc[, 1] + fc[, 2]) / 2
   
-  # fcCopy[!de,] <- c(mean_expr[!de],mean_expr[!de])
+  # fc[!de,] <- c(mean_expr[!de],mean_expr[!de])
   
   
   
   sim_libsizes <- runif(n * 2, min = min(libsize), max = max(libsize))
   
   
-  m <- matrix(nrow = length(params$dispsCR), ncol = n * 2)
+  m <- matrix(nrow = length(disps), ncol = n * 2)
 
   
-  for (i in 1:length(params$dispsCR)) {
+  for (i in 1:length(disps)) {
     for (j in 1:(n * 2)) {
-      m[i, j] <- rnbinom(1, mu = exp(sim_libsizes[j] + ifelse(j <= n, fcCopy[i, 1], fcCopy[i, 2])), size = 1 / params$dispsCR[i])
+      m[i, j] <- rnbinom(1, mu = exp(sim_libsizes[j] + ifelse(j <= n, fc[i, 1], fc[i, 2])), size = 1 / disps[i])
     }
   }
   
@@ -107,7 +109,7 @@ simulateOF = function(params, n) {
   
   colnames(m) <- label
   
-  rownames(m) <- paste0("g", 1:length(params$dispsCR))
+  rownames(m) <- paste0("g", 1:length(disps))
   
   return(m)
   
@@ -119,29 +121,28 @@ simulateOF = function(params, n) {
 
 evalOFData = function(m, n) {
   
-  tryCatch({
+  pval_list_sim = list()
+  
+  treatmentFactor <- factor(c(rep("N", n), rep("T", n)))
     
-    treatmentFactor <- factor(rep(c("N", "T"), n))
+  edgeR_cds <- DGEList(m, group=treatmentFactor)
     
-    edgeR_cds <- DGEList(m, group=treatmentFactor)
+  edgeR_cds <- calcNormFactors(edgeR_cds)
     
-    edgeR_cds <- calcNormFactors(edgeR_cds)
+  edgeR_cds <- estimateCommonDisp(edgeR_cds)
     
-    edgeR_cds <- estimateCommonDisp(edgeR_cds)
+  edgeR_cds <- estimateTagwiseDisp(edgeR_cds)
     
-    edgeR_cds <- estimateTagwiseDisp(edgeR_cds)
+  res <- exactTest(edgeR_cds, pair = c(unique(treatmentFactor)[1], unique(treatmentFactor)[2]))$table
     
-    res <- exactTest(edgeR_cds, pair = c(unique(treatmentFactor)[1], unique(treatmentFactor)[2]))$table
+  pvalSim <- res$PValue
     
-    pvalSim <- res$PValue
+  padjSim <- p.adjust(pvalSim, method = "BH")
     
-    padjSim <- p.adjust(pvalSim, method = "BH")
+  resSim <- cbind(pvalSim, padjSim)
     
-    resSim <- cbind(pvalSim, padjSim)
-    
-    pval_list_sim[["er"]] <- as.matrix(resSim)
-    
-  }, error = function(e) { printerror(e, "edgeR") })
+  pval_list_sim[["er"]] <- as.matrix(resSim)
+  
   
   return(pval_list_sim)
   
@@ -213,9 +214,9 @@ treatment = snf2_metadata$toothpaste
 
 paramsOF = estimateOFParams(ko_noz_filt, treatment)
 
-resultsOF = ofPowerAnalysis(paramsOF, 3, 5, 10, 1)
+resultsOF = ofPowerAnalysis(paramsOF, 3, 5, 30, 5)
 
 
-plot(rownames(resultsOF),rowMeans(resultsOF, na.rm=T), main="edgeR Simulation on Snf2 Data", xlab = "Number of Replicates", ylab = "Power")
+plot(rownames(resultsOF),rowMeans(resultsOF, na.rm=T), main="One Factor Power Analysis on Snf2 Data", xlab = "Number of Replicates", ylab = "Power")
 
 

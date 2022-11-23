@@ -81,7 +81,7 @@ simulatePaired = function(params, n) {
   
   fcCopy = params$fc
   
-  fcPanelist = params$fc[, 1:(dim(fc)[2] - 1)]
+  fcPanelist = params$fc[, 1:(dim(params$fc)[2] - 1)]
   
   de = params$de
   
@@ -106,7 +106,7 @@ simulatePaired = function(params, n) {
   m <- matrix(nrow = length(params$dispsCR), ncol = n * 2)
   
   
-  fcCopy = fc[, dim(fc)[2]]
+  fcCopy = fcCopy[, dim(fcCopy)[2]]
   
   for (i in 1:length(params$dispsCR)) {
     for (j in 1:(n * 2)) {
@@ -136,37 +136,35 @@ simulatePaired = function(params, n) {
 
 evalSimulatedData = function(m, n) {
   
-  tryCatch({
+  pval_list_sim = list()
     
-    panelistFactor <- factor(sort(c(1:n, 1:n)))
+  panelistFactor <- factor(sort(c(1:n, 1:n)))
     
-    treatmentFactor <- factor(rep(c("N", "T"), n))
+  treatmentFactor <- factor(rep(c("N", "T"), n))
     
-    design <- model.matrix(~panelistFactor + treatmentFactor)
+  design <- model.matrix(~panelistFactor + treatmentFactor)
     
-    edgeR_cds <- DGEList(m)
+  edgeR_cds <- DGEList(m)
     
-    edgeR_cds <- calcNormFactors(edgeR_cds)
+  edgeR_cds <- calcNormFactors(edgeR_cds)
     
-    edgeR_cds <- estimateGLMCommonDisp(edgeR_cds, design)
+  edgeR_cds <- estimateGLMCommonDisp(edgeR_cds, design)
     
-    edgeR_cds <- estimateGLMTrendedDisp(edgeR_cds, design)
+  edgeR_cds <- estimateGLMTrendedDisp(edgeR_cds, design)
     
-    edgeR_cds <- estimateGLMTagwiseDisp(edgeR_cds, design)
+  edgeR_cds <- estimateGLMTagwiseDisp(edgeR_cds, design)
     
-    fit <- glmFit(edgeR_cds, design)
+  fit <- glmFit(edgeR_cds, design)
     
-    res <- glmLRT(fit)$table
+  res <- glmLRT(fit)$table
     
-    pvalSim <- res$PValue
+  pvalSim <- res$PValue
     
-    padjSim <- p.adjust(pvalSim, method = "BH")
+  padjSim <- p.adjust(pvalSim, method = "BH")
     
-    resSim <- cbind(pvalSim, padjSim)
+  resSim <- cbind(pvalSim, padjSim)
     
-    pval_list_sim[["er"]] <- as.matrix(resSim)
-    
-  }, error = function(e) { printerror(e, "edgeR") })
+  pval_list_sim[["er"]] <- as.matrix(resSim)
   
   return(pval_list_sim)
   
@@ -236,7 +234,7 @@ treatment = snf2_metadata$toothpaste
 
 params = estimatePairedParams(ko_noz_filt, panelist, treatment)
 
-results = pairedPowerAnalysis(params, 3, 5, 100, 5)
+results = pairedPowerAnalysis(params, 3, 5, 30, 5)
 
 
 plot(rownames(results),rowMeans(results, na.rm=T), main="edgeR Simulation on Snf2 Data", xlab = "Number of Replicates", ylab = "Power")
