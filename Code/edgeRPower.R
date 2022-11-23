@@ -1,6 +1,6 @@
 library(MASS)
 library(edgeR)
-
+library(dplyr)
 
 estimatePairedParams = function(counts, panelist, treatment) {
   
@@ -173,7 +173,7 @@ evalSimulatedData = function(m, n) {
 }
 
 
-pairedPowerAnalysis = function(params, sims=5, nmin, nmax) {
+pairedPowerAnalysis = function(params, sims=5, nmin, nmax, interval = 1) {
   
   result_matrix <- matrix(ncol = sims, nrow = 0)
   
@@ -202,7 +202,7 @@ pairedPowerAnalysis = function(params, sims=5, nmin, nmax) {
     
     rownames(result_matrix)[dim(result_matrix)[1]] <- n
     
-    n <- n + 1
+    n <- n + interval
     
   }
   
@@ -236,7 +236,7 @@ treatment = snf2_metadata$toothpaste
 
 params = estimatePairedParams(ko_noz_filt, panelist, treatment)
 
-results = pairedPowerAnalysis(params, 3, 2, 30)
+results = pairedPowerAnalysis(params, 3, 5, 100, 5)
 
 
 plot(rownames(results),rowMeans(results, na.rm=T), main="edgeR Simulation on Snf2 Data", xlab = "Number of Replicates", ylab = "Power")
