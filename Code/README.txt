@@ -89,7 +89,7 @@ estimateOFParams(counts, factor)
 			params[2] - returns fc, a list of fold change values for each gene
 			params[3] - returns dispsCR, a list of dispersion values for each gene
 			params[4] - returns sample_data, a data frame containing the factor type as well as the average library
-				size for each gene
+				size for each sample
 			params[5] - returns nofit,  a list of indices of genes which the edgeR package could not fit parameters to
 			params[6] - returns de, a list of the genes which were found to be differentially expressed in the experiment
 

@@ -1,3 +1,4 @@
+
 source("Code/RNASeqPower.R")
 
 Data_wd <- "./Data/"
@@ -17,7 +18,7 @@ panelist = snf2_metadata$panelist
 treatment = snf2_metadata$toothpaste
 
 
-results = pairedPowerAnalysis(ko_noz_filt, treatment, panelist, 3, 5, 10)
+results = ofPowerAnalysis(ko_noz_filt, treatment, 3, 5, 10, 1)
 
 plot(rownames(results),rowMeans(results, na.rm=T), main="One Factor Power Analysis on Snf2 Data", xlab = "Number of Replicates", ylab = "Power")
 
