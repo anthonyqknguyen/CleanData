@@ -13,14 +13,19 @@ ko_noz_filt <- filter(ko_noz_filt , rowSums(across(everything(), ~.x==0))<=9)
 
 snf2_metadata <- read.table(paste(Data_wd, "metadata (1).txt", sep=""), sep="\t", fill = TRUE)
 
-panelist = snf2_metadata$panelist
+# panelist = snf2_metadata$panelist
 
 treatment = snf2_metadata$toothpaste
 
+treatment
 
-results = ofPowerAnalysis(ko_noz_filt, treatment, 3, 5, 10, 1)
+
+results = ofPowerAnalysis(ko_noz_filt, treatment, 2, 5, 10, 1)
 
 plot(rownames(results),rowMeans(results, na.rm=T), main="One Factor Power Analysis on Snf2 Data", xlab = "Number of Replicates", ylab = "Power")
 
 results
+
+
+
 

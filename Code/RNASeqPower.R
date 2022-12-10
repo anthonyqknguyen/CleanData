@@ -178,7 +178,7 @@ simulateOF = function(params, n) {
     }
   }
   
-  
+  m[m >= 50000] <- 50000
   
   label <- paste0(c(rep("A", n), rep("B", n)), rep(1:n, 2))
   
@@ -230,7 +230,7 @@ simulatePaired = function(params, n) {
     }
   }
   
-  
+  m[m >= 50000] <- 50000
   
   Panelist <- sort(c(1:n, 1:n))
   
