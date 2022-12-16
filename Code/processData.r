@@ -33,8 +33,9 @@ make_hist <- function(data, title= "untitled", save= FALSE, file_name= "untitled
     svg(file_name)
   }
   plot(hist.data,
-       xlab="Counts of Bacteria", ylab="Frequency (log10)", main=title, 
-       col="lightblue")
+       xlab="Counts of Gene Sequences", ylab="Frequency (log10)", main=title, 
+       col="lightblue",
+       xlim=c(0,5000), ylim=c(0,8))
   if (save) {
     dev.off()
   }
@@ -48,5 +49,5 @@ ko_num_before <- ko_num[,1:6]
 ko_num_after <- ko_num[,7:12]
 
 make_hist(counts_num, "Citizens Data", save = T, "Citizens_hist.svg")
-make_hist(ko_num_before, "SnF2 Before Treatment Data", save=T, "snf2_before_hist.svg")
+make_hist(ko_num, "SnF2 Data", save=F, "snf2_hist.svg")
 make_hist(ko_num_after, "SnF2 After Treatment Data", save=T, "snf2_after_hist.svg")
