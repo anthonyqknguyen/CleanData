@@ -21,6 +21,7 @@ khier <- read.table(paste(Data_wd, "khier_2020_fixed.txt", sep=""), sep="\t")
 ko_noz <- read.table(paste(Data_wd, "ko_noz_rn_tmm.txt", sep=""), sep="\t")
 
 # Reading in snf2 metadata
+
 snf2_metadata <- read.table(paste(Data_wd, "metadata (1).txt", sep=""), sep="\t", fill = TRUE)
 
 
@@ -51,3 +52,4 @@ ko_num_after <- ko_num[,7:12]
 make_hist(counts_num, "Citizens Data", save = T, "Citizens_hist.svg")
 make_hist(ko_num, "SnF2 Data", save=F, "snf2_hist.svg")
 make_hist(ko_num_after, "SnF2 After Treatment Data", save=T, "snf2_after_hist.svg")
+
