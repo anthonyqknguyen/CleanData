@@ -27,11 +27,9 @@ plot(rownames(results),rowMeans(results, na.rm=T), main="One Factor Power Analys
 results
 
 
-params = estimatePairedParams(ko_noz_filt, treatment, panelist)
 
-m = simulatePaired(params, 6)
 
-h = hist(m)
-h$counts = log10(h$counts + 1)
 
-plot(h, xlim=c(0,50000), ylim=c(0,5), col='lightblue', xlab = "Counts of Bacteria", ylab = "Frequency (log10)")
+
+
+
