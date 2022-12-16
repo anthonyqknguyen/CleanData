@@ -1,0 +1,156 @@
+---
+title: "Impact of Biological Factos on Product Effectiveness"
+author: Clean Data
+subtitle: "Colgate-Palmolive"
+date: "`r format(Sys.time(), '%B %d, %Y')`" # This automatically sets date to today
+institution: "Virginia Tech"
+
+
+output:
+  beamer_presentation:
+    incremental: no #Don't make new slides for each bullet point
+    toc: no #No table of contents slide
+    theme: Hokie
+    latex_engine: pdflatex 
+    slide_level: 2 # This makes double hashes slides, single hashes section titles
+
+        
+classoption: aspectratio=169 #Force widescreen
+urlcolor: blue # urlcolor makes external hyperlinks blue as people expect
+linkcolor: white # Ensure that the navigation dots are white for contrast
+header-includes: \AtBeginSection{} # Turn off section header slides.
+
+
+bibliography: "citations.bib" # This is the name of your citations file. An easy way to
+                              # build a citations file is Zotero: https://zbib.org/
+                              
+biblio-style: "apa.csl" # This is the APA citation style file, there are a LOT available:
+                        # https://github.com/citation-style-language/styles
+                        
+# nocite lets you include references from the .bib file without explicitly referring 
+# to them in the presentation body. References here MUST match whats in the .bib file.
+nocite: "@rmdGuide, @ggplotBg, @rTheme, @rCodeFont, @rCrime"
+---
+
+```{r setup, include=FALSE}
+# comment = NA turns off double hash marks on code outputs 
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment = NA, dev = 'pdf')
+options(width = 120) # Make output wider so more code fits on a widescreen slide.
+
+
+# This uses a 'size' option in knitr chunks and will change output size. eg {r size="tiny"}
+def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- def.chunk.hook(x, options)
+  ifelse(options$size != "normalsize", paste0("\n \\", options$size,"\n\n", x, "\n\n \\normalsize"), x)
+})
+
+
+library(ggplot2)
+# Transparent background for ggplot helps avoid overlapping the VT logo
+theme_update(plot.background = element_rect(fill = "transparent",colour = NA))
+
+
+# Other libraries can be imported here. 
+
+
+```
+
+
+# Intro
+
+## Intro Title
+
+testing
+
+# Problem
+
+## Problem Statement
+
+
+
+# Literature
+
+## Literature
+\setbeamerfont{caption}{size=\scriptsize}
+\begin{columns}
+\begin{column}{0.35\textwidth}
+\begin{figure}
+  \includegraphics[width=\textwidth]{./paper1.pdf}
+  \caption{Ching, Travers, et al. “Power Analysis and Sample Size Estimation for RNA-Seq Differential
+Expression.” RNA, vol. 20, no. 11, 2014, pp. 1684–1696., https://doi.org/10.1261/rna.046011.114.}
+\end{figure}
+\end{column}
+\begin{column}{0.65\textwidth}
+this is one of our sources
+\end{column}
+\end{columns}
+
+
+## Literature 2
+\setbeamerfont{caption}{size=\scriptsize}
+\begin{columns}
+\begin{column}{0.35\textwidth}
+\begin{figure}
+  \includegraphics[width=\textwidth]{./paper2.pdf}
+  \caption{Tarazona, Sonia, et al. “Data Quality Aware Analysis of Differential Expression in RNA-Seq with Noiseq R/Bioc Package.” Nucleic Acids Research, 2015, https://doi.org/10.1093/nar/gkv711. }
+\end{figure}
+\end{column}
+\begin{column}{0.65\textwidth}
+this is one of our sources
+\end{column}
+\end{columns}
+
+## Literature 3
+\setbeamerfont{caption}{size=\scriptsize}
+\begin{columns}
+\begin{column}{0.35\textwidth}
+\begin{figure}
+  \includegraphics[width=0.65\textwidth]{./paper3.pdf}
+  \caption{Tarazona, Sonia, et al. “Data Quality Aware Analysis of Differential Expression in RNA-Seq with Noiseq R/Bioc Package.” Nucleic Acids Research, 2015, https://doi.org/10.1093/nar/gkv711. }
+\end{figure}
+\end{column}
+\begin{column}{0.65\textwidth}
+this is one of our sources
+\end{column}
+\end{columns}
+# Components
+
+## Components
+
+# Solutions
+
+## Solutions
+
+## Deliverables
+
+## Future Plans
+
+# Results
+
+## Preliminary Results
+
+## Conclusion
+
+
+
+# References
+
+## About References
+
+- The References slide is created from a BibTeX `(.bib)` file declared at the top of this file
+
+- Citation style is defined from a `.csl` file also declared at the top of this file
+
+- Use `nocite` to include a citation in the bibliography without referencing it directly
+
+- References can be cited in the presentation with `@referenceName` eg `@ggplotBg`: @ggplotBg
+
+- Zotero is a good tool for building citation files: https://zbib.org/
+
+- There are 1400+ citation style files available: https://github.com/citation-style-language/styles
+
+- `{.allowframebreaks}` can be useful if there are many citations
+
+## References
+\footnotesize
